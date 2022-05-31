@@ -20,5 +20,10 @@ namespace QuickStart.Core
             // return $".NET Core welcomes {input}";
             return $".NET welcomes {input}";
         }
+
+        public async Task<object> Sum5(dynamic input)
+        {
+            return 5 + input;
+        }
     }
 }

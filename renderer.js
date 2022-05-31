@@ -37,6 +37,12 @@ var useDynamicInput = edge.func({
     methodName: 'UseDynamicInput'
 });
 
+var sum5 = edge.func({
+    assemblyFile: baseDll,
+    typeName: localTypeName,
+    methodName: 'Sum5'
+});
+
 var getPerson = edge.func({
     assemblyFile: baseDll,
     typeName: externalTypeName,
@@ -69,5 +75,8 @@ window.onload = function() {
 };
 
 window.handleClick = () => {
-    Console.log('renderer!!!');
+    sum5(7, function(error, result){
+        if (error) throw error;
+        console.log(result);
+    });
 }
