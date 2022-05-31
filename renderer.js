@@ -1,9 +1,11 @@
 const path = require('path');
 var version = location.search.split('version=')[1];
 var namespace = 'QuickStart.' + version.charAt(0).toUpperCase() + version.substr(1);
-if(version === 'core') version = 'coreapp';
+// if(version === 'core') version = 'coreapp';
+if(version === 'core') version = '';
 
-const baseNetAppPath = path.join(__dirname, '/src/'+ namespace +'/bin/Debug/net'+ version +'2.0');
+// const baseNetAppPath = path.join(__dirname, '/src/'+ namespace +'/bin/Debug/net'+ version +'2.0');
+const baseNetAppPath = path.join(__dirname, '/src/'+ namespace +'/bin/Debug/net'+ version +'5.0');
 
 process.env.EDGE_USE_CORECLR = 1;
 if(version !== 'standard')

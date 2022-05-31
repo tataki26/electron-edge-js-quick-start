@@ -17,7 +17,8 @@ namespace QuickStart.Core
 
         public async Task<object> UseDynamicInput(dynamic input)
         {
-            return $".NET Core welcomes {input}";
+            // return $".NET Core welcomes {input}";
+            return $".NET welcomes {input}";
         }
     }
 }
