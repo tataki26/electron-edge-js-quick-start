@@ -12,6 +12,7 @@ if(version !== 'standard')
     process.env.EDGE_APP_ROOT = baseNetAppPath;
 
 var edge = require('electron-edge-js');
+const { Console } = require('console');
 
 var baseDll = path.join(baseNetAppPath, namespace + '.dll');
 
@@ -66,3 +67,7 @@ window.onload = function() {
     });
 
 };
+
+window.handleClick = () => {
+    Console.log('renderer!!!');
+}
