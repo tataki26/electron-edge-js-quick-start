@@ -19,6 +19,7 @@ var baseDll = path.join(baseNetAppPath, namespace + '.dll');
 
 var localTypeName = namespace + '.LocalMethods';
 var externalTypeName = namespace + '.ExternalMethods';
+var uniTypeName = namespace + '.UniDevice';
 
 var getAppDomainDirectory = edge.func({
     assemblyFile: baseDll,
@@ -50,6 +51,12 @@ var getPerson = edge.func({
     methodName: 'GetPersonInfo'
 });
 
+var connect = edge.func({
+    assemblyFile: baseDll,
+    typeName: uniTypeName,
+    methodName: 'Connect'
+})
+
 
 window.onload = function() {
 
@@ -75,6 +82,7 @@ window.onload = function() {
 
 };
 
+/*
 window.handleClick = () => {
     ipcRenderer.send('handle-click');
     sum5(7, function(error, result){
@@ -82,4 +90,11 @@ window.handleClick = () => {
         console.log(result);
     });
 }
+*/
 
+window.handleClick = () => {
+    connect(5000,function(error,result) {
+        if (result==-1) ipcRenderer.send('connect-fail');
+        else ipcRenderer.send('connect-success');
+    });
+}
