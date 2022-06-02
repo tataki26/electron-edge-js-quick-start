@@ -13,6 +13,7 @@ if(version !== 'standard')
 
 var edge = require('electron-edge-js');
 const { Console } = require('console');
+const { ipcRenderer } = require('electron');
 
 var baseDll = path.join(baseNetAppPath, namespace + '.dll');
 
@@ -75,8 +76,10 @@ window.onload = function() {
 };
 
 window.handleClick = () => {
+    ipcRenderer.send('handle-click');
     sum5(7, function(error, result){
         if (error) throw error;
         console.log(result);
     });
 }
+
