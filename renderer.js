@@ -5,7 +5,8 @@ var namespace = 'QuickStart.' + version.charAt(0).toUpperCase() + version.substr
 if(version === 'core') version = '';
 
 // const baseNetAppPath = path.join(__dirname, '/src/'+ namespace +'/bin/Debug/net'+ version +'2.0');
-const baseNetAppPath = path.join(__dirname, '/src/'+ namespace +'/bin/Debug/net'+ version +'5.0');
+// const baseNetAppPath = path.join(__dirname, '/src/'+ namespace +'/bin/Debug/net'+ version +'5.0');
+const baseNetAppPath = path.join(__dirname, '/src/'+ namespace + '/bin/x64/Debug/net'+version+'5.0');
 
 process.env.EDGE_USE_CORECLR = 1;
 if(version !== 'standard')
@@ -19,7 +20,8 @@ var baseDll = path.join(baseNetAppPath, namespace + '.dll');
 
 var localTypeName = namespace + '.LocalMethods';
 var externalTypeName = namespace + '.ExternalMethods';
-var uniTypeName = namespace + '.UniDevice';
+// var uniTypeName = namespace + '.UniDevice';
+var uniTypeName = namespace + '.UniClass';
 
 var getAppDomainDirectory = edge.func({
     assemblyFile: baseDll,
@@ -94,7 +96,11 @@ window.handleClick = () => {
 
 window.handleClick = () => {
     connect(5000,function(error,result) {
-        if (result==-1) ipcRenderer.send('connect-fail');
-        else ipcRenderer.send('connect-success');
+        if (result == 0) ipcRenderer.send('connect-success');
+        else 
+        {
+            ipcRenderer.send('connect-fail');
+            console.log(result);
+        }
     });
 }

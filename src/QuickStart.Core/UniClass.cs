@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace QuickStart.Core
 {
-    class UniDevice
+    class UniClass
     {
-        #region API Define
         public enum eUniApiReturnCode
         {
             Success = 0,
@@ -80,21 +79,21 @@ namespace QuickStart.Core
         }
 
         public int NetID { get; protected set; } = 1;
-        #endregion
 
-        #region API Import
         [DllImport("EMotionUniDevice.dll", CallingConvention = CallingConvention.Cdecl)]
         protected static extern int eUniConnect(int netId, int port);
-        #endregion
 
-        public async Task<object> Connect(dynamic port)
+        public async Task<object> Connect(int port)
         {
             int returnCode = (int)eUniApiReturnCode.Success;
-            int netId = 1;
+            int netId = 4;
 
             try
             {
-                returnCode = eUniConnect(netId, port);
+                // returnCode = await Task.FromResult<int>(eUniConnect(netId, port));
+                // returnCode = eUniConnect(netId, port);
+                var task = Task.Run(() => eUniConnect(netId, port));
+                returnCode = await task;
             }
             catch (Exception ex)
             {
