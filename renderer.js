@@ -95,7 +95,7 @@ window.handleClick = () => {
 */
 
 window.handleClick = () => {
-    connect(5000,function(error,result) {
+    connect(10025, function(error,result) {
         if (result == 0) ipcRenderer.send('connect-success');
         else 
         {
